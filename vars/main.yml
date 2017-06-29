@@ -37,4 +37,4 @@ openresty_config_optoins: |
     --with-stream_ssl_module
     --with-threads
 
-openresty_config_deps: "--with-openssl=/tmp/openssl-${{ openresty_openssl }} --with-pcre=/tmp/pcre-${{ openresty_pcre }}"
+openresty_config_deps: "--with-openssl=/tmp/openssl-{{ openresty_openssl }} --with-pcre=/tmp/pcre-{{ openresty_pcre }}"
