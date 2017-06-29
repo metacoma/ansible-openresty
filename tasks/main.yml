@@ -33,9 +33,8 @@
 
 - name: Download necessary source files
   unarchive:
-    src: "{{ item.url }}"
+    src: "{{ item }}"
     remote_src: true
-    #dest: "/tmp/{{ item.dest | regex_replace('\\.tar\\.gz$', '') }}"
     dest: "/tmp"
   with_items:
     - "https://openresty.org/download/openresty-{{ openresty_version }}.tar.gz"
