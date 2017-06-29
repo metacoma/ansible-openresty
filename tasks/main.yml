@@ -24,26 +24,12 @@
     - perl
     - unzip
     - zlib
-    - nodejs
     - py-pip
-    - netcat-openbsd
     - git
-    - skalibs
-    - skalibs-dev
-    - sudo
     - openssh-client
     - coreutils
     - iproute2
     - tar
-
-#- name: Mkdir necessary dirs
-#  file:
-    #path: "/tmp/{{ item }}"
-#    state: directory
-#  with_items:
-#    - "openresty-{{ openresty_version }}"
-#    - "openssl-{{ openresty_openssl }}"
-#    - "pcre-{{ openresty_pcre }}"
 
 - name: Download necessary source files
   unarchive:
@@ -52,27 +38,12 @@
     #dest: "/tmp/{{ item.dest | regex_replace('\\.tar\\.gz$', '') }}"
     dest: "/tmp"
   with_items:
-    - url: "https://openresty.org/download/openresty-{{ openresty_version }}.tar.gz"
-      #dest: "openresty-{{ openresty_version }}"
-
-    - url: "https://www.openssl.org/source/openssl-{{ openresty_openssl }}.tar.gz"
-      #dest: "openssl-{{ openresty_openssl }}.tar.gz"
-
-    - url: "https://ftp.pcre.org/pub/pcre/pcre-{{ openresty_pcre }}.tar.gz"
-      #dest: "pcre-{{ openresty_pcre }}.tar.gz"
+    - "https://openresty.org/download/openresty-{{ openresty_version }}.tar.gz"
+    - "https://www.openssl.org/source/openssl-{{ openresty_openssl }}.tar.gz"
+    - "https://ftp.pcre.org/pub/pcre/pcre-{{ openresty_pcre }}.tar.gz"
 
 - find:
     paths: "/tmp"
-
-#- name: Unpack sources
-#  unarchive:
-#    src: "/tmp/{{ item }}"
-#    dest: "/tmp/{{ item | regex_replace('\\.tar\\.gz$', '')  }}"
-#  with_items:
-#    - "openresty-{{ openresty_version }}.tar.gz"
-#    - "openssl-{{ openresty_openssl }}.tar.gz"
-#    - "pcre-{{ openresty_pcre  }}.tar.gz"
-#
 
 - name: Configure openresty
   command: "{{ item }}"
